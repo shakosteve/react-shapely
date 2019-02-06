@@ -1,6 +1,8 @@
 import * as React from "react";
 import "../styles/ShapeSelector.css";
-import Rectangle from "./Rectangle";
+import Circle from "./Circle";
+// import Rectangle from "./Rectangle";
+// import RightTriangle from "./RightTriangle";
 
 function ShapeSelector() {
   return (
@@ -13,7 +15,7 @@ function ShapeSelector() {
         <option value="Cicle">Circle</option>
         <option value="Triangle">Triangle</option>
       </select>
-      <Rectangle />
+      <Circle />
     </div>
   );
 }

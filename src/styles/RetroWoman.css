@@ -3,9 +3,7 @@
   font-family: "Tangerine";
   display: inline-block;
   width: 200px;
-
 }
-
 .RetroWomanImage {
   height: 225px;
   transform: rotateY(180deg);

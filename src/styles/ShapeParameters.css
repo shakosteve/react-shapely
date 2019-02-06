@@ -1,0 +1,13 @@
+.Parameter {
+    font-family: "Calibri";
+    width: 300px;
+    font-size: 23px;
+    background-color: antiquewhite;
+    height: 28px;
+    resize: none;
+    margin: auto;
+  }
+
+  .ParameterDiv {
+      margin-top: auto;
+  }

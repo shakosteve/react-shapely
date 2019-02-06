@@ -1,0 +1,11 @@
+body {
+  margin-top: 25px;
+  background-color: antiquewhite
+}
+
+.Title {
+
+  font-family: 'Tangerine';
+  font-size: 80px;
+  text-align: center;
+}

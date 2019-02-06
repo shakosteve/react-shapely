@@ -1,0 +1,11 @@
+.RetroMan {
+  font-size: 42px;
+  font-family: "Tangerine";
+  display: inline-block;
+  width: 200px;
+}
+.RetroManImage {
+    height: 225px;
+    vertical-align: bottom;
+    
+}

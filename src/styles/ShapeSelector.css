@@ -1,0 +1,19 @@
+.ShapeSelector {
+  font-size: 42px;
+  font-family: "Tangerine";
+  display: inline-block;
+  margin: 200px;
+  margin-bottom: auto;
+}
+
+.Selection {
+  font-family: "Calibri";
+  width: 300px;
+  font-size: 23px;
+  background-color: antiquewhite;
+  height: 30px;
+  resize: none;
+  margin: auto;
+  
+}
+

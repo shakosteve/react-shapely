@@ -4,18 +4,37 @@ import "../styles/ShapeParameters.css";
 function Circle() {
   return (
     <div className="ParameterDiv">
+      <input
+        type="number"
+        min="1"
+        name="radius"
+        className="Parameter"
+        placeholder="Radius"
+      />
       <br />
-      <textarea id="radius" className="Parameter" placeholder="Radius" />
+      <input
+        type="number"
+        min="1"
+        name="diameter"
+        className="Parameter"
+        placeholder="Diameter"
+      />
       <br />
-      <textarea id="diameter" className="Parameter" placeholder="Diameter" />
-      <br />
-      <textarea
-        id="circumference"
+      <input
+        type="number"
+        min="1"
+        name="circumference"
         className="Parameter"
         placeholder="Circumference"
       />
       <br />
-      <textarea id="area" className="Parameter" placeholder="Area" />
+      <input
+        type="number"
+        min="1"
+        name="area"
+        className="Parameter"
+        placeholder="Area"
+      />
       <br />
     </div>
   );

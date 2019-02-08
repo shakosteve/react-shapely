@@ -4,18 +4,37 @@ import "../styles/ShapeParameters.css";
 function RightTriangle() {
   return (
     <div className="ParameterDiv">
+      <input
+        type="number"
+        min="1"
+        name="lega"
+        className="Parameter"
+        placeholder="Leg A"
+      />
       <br />
-      <textarea id="lega" className="Parameter" placeholder="Leg A" />
+      <input
+        type="number"
+        min="1"
+        name="legb"
+        className="Parameter"
+        placeholder="Leg B"
+      />
       <br />
-      <textarea id="legb" className="Parameter" placeholder="Leg B" />
-      <br />
-      <textarea
-        id="hypotenuse"
+      <input
+        type="number"
+        min="1"
+        name="hypotenuse"
         className="Parameter"
         placeholder="Hypotenuse"
       />
       <br />
-      <textarea id="perimeter" className="Parameter" placeholder="Perimeter" />
+      <input
+        type="number"
+        min="1"
+        name="perimeter"
+        className="Parameter"
+        placeholder="Perimeter"
+      />
       <br />
     </div>
   );

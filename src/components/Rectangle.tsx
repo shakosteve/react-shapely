@@ -4,14 +4,37 @@ import "../styles/ShapeParameters.css";
 function Rectangle() {
   return (
     <div className="ParameterDiv">
+      <input
+        type="number"
+        min="1"
+        name="length"
+        className="Parameter"
+        placeholder="Length"
+      />
       <br />
-      <textarea id="length" className="Parameter" placeholder="Length" />
+      <input
+        type="number"
+        min="1"
+        name="width"
+        className="Parameter"
+        placeholder="Width"
+      />
       <br />
-      <textarea id="width" className="Parameter" placeholder="Width" />
+      <input
+        type="number"
+        min="1"
+        name="perimeter"
+        className="Parameter"
+        placeholder="Perimeter"
+      />
       <br />
-      <textarea id="perimeter" className="Parameter" placeholder="Perimeter" />
-      <br />
-      <textarea id="area" className="Parameter" placeholder="Area" />
+      <input
+        type="number"
+        min="1"
+        name="area"
+        className="Parameter"
+        placeholder="Area"
+      />
     </div>
   );
 }

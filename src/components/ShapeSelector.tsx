@@ -7,17 +7,18 @@ import Circle from "./Circle";
 function ShapeSelector() {
   return (
     <div className="ShapeSelector">
-    <form>
-      <select className="Selection">
-        <option value="" disabled={true} selected={true} hidden={true}>
-          Choose a shape
-        </option>
-        <option value="Rectangle">Rectangle</option>
-        <option value="Cicle">Circle</option>
-        <option value="Triangle">Triangle</option>
-      </select>
-      <Circle />
-      <input type="Submit" className="submit" value="Submit" /> <input type="Submit" className="clear" value="Clear" />
+      <form>
+        <select className="Selection">
+          <option value="" disabled={true} selected={true} hidden={true}>
+            Choose a shape
+          </option>
+          <option value="Rectangle">Rectangle</option>
+          <option value="Cicle">Circle</option>
+          <option value="Triangle">Triangle</option>
+        </select>
+        <Circle />
+        <input type="button" className="btn btn-dark" value="Submit" />{" "}
+        <input type="button" className="btn btn-dark" value="Clear" />
       </form>
     </div>
   );

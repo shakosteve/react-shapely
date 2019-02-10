@@ -8,19 +8,14 @@
 .Selection {
   font-family: "Calibri";
   width: 300px;
-  font-size:18px;
+  font-size: 18px;
   background-color: antiquewhite;
   height: auto;
   resize: none;
   margin: auto;
-  
 }
 
-.submit {
+.btn {
   width: 150px;
+  font-family: "Calibri";
 }
-
-.clear {
-  width: 150px;
-}
-

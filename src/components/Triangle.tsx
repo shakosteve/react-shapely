@@ -1,6 +1,14 @@
 import * as React from "react";
 import "../styles/ShapeParameters.css";
 
+export interface IProps {
+  lega?: number;
+  legb?: number;
+  hypotenuse?: number;
+  perimeter?: number;
+  shapeValidation: string
+}
+
 function RightTriangle() {
   return (
     <div className="ParameterDiv">
@@ -8,7 +16,7 @@ function RightTriangle() {
         type="number"
         min="1"
         name="lega"
-        className="Parameter"
+        className="form-control"
         placeholder="Leg A"
       />
       <br />
@@ -16,7 +24,7 @@ function RightTriangle() {
         type="number"
         min="1"
         name="legb"
-        className="Parameter"
+        className="form-control"
         placeholder="Leg B"
       />
       <br />
@@ -24,7 +32,7 @@ function RightTriangle() {
         type="number"
         min="1"
         name="hypotenuse"
-        className="Parameter"
+        className="form-control"
         placeholder="Hypotenuse"
       />
       <br />
@@ -32,7 +40,7 @@ function RightTriangle() {
         type="number"
         min="1"
         name="perimeter"
-        className="Parameter"
+        className="form-control"
         placeholder="Perimeter"
       />
       <br />

@@ -5,17 +5,22 @@
   margin: 100px;
 }
 
-.Selection {
+.custom-select {
   font-family: "Calibri";
   width: 300px;
-  font-size: 18px;
+  font-size: 14px;
   background-color: antiquewhite;
   height: auto;
   resize: none;
-  margin: auto;
+  margin: 12px;
 }
 
 .btn {
   width: 150px;
   font-family: "Calibri";
+}
+.ShapeValidation {
+  margin-top: 50px;
+  font-family: "Calibri";
+  font-size: 16px;
 }

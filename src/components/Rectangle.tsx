@@ -1,6 +1,14 @@
 import * as React from "react";
 import "../styles/ShapeParameters.css";
 
+export interface IProps {
+  length?: number;
+  width?: number;
+  perimeter?: number;
+  area?: number;
+  shapeValidation: string
+}
+
 function Rectangle() {
   return (
     <div className="ParameterDiv">
@@ -8,7 +16,7 @@ function Rectangle() {
         type="number"
         min="1"
         name="length"
-        className="Parameter"
+        className="form-control"
         placeholder="Length"
       />
       <br />
@@ -16,7 +24,7 @@ function Rectangle() {
         type="number"
         min="1"
         name="width"
-        className="Parameter"
+        className="form-control"
         placeholder="Width"
       />
       <br />
@@ -24,7 +32,7 @@ function Rectangle() {
         type="number"
         min="1"
         name="perimeter"
-        className="Parameter"
+        className="form-control"
         placeholder="Perimeter"
       />
       <br />
@@ -32,7 +40,7 @@ function Rectangle() {
         type="number"
         min="1"
         name="area"
-        className="Parameter"
+        className="form-control"
         placeholder="Area"
       />
     </div>

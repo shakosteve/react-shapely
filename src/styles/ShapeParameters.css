@@ -1,11 +1,11 @@
-.Parameter {
+.form-control {
   font-family: "Calibri";
   width: 300px;
-  font-size: 18px;
+  font-size: 14px;
   background-color: antiquewhite;
   height: auto;
   resize: none;
-  margin: 6px;
+  margin: auto;
 }
 
 .ParameterDiv {

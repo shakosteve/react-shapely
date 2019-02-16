@@ -1,6 +1,15 @@
 import * as React from "react";
 import "../styles/ShapeParameters.css";
 
+export interface IProps {
+  radius?: number;
+  diameter?: number;
+  circumference?: number;
+  area?: number;
+  shapeValidation: string
+}
+
+
 function Circle() {
   return (
     <div className="ParameterDiv">
@@ -8,7 +17,7 @@ function Circle() {
         type="number"
         min="1"
         name="radius"
-        className="Parameter"
+        className="form-control"
         placeholder="Radius"
       />
       <br />
@@ -16,7 +25,7 @@ function Circle() {
         type="number"
         min="1"
         name="diameter"
-        className="Parameter"
+        className="form-control"
         placeholder="Diameter"
       />
       <br />
@@ -24,7 +33,7 @@ function Circle() {
         type="number"
         min="1"
         name="circumference"
-        className="Parameter"
+        className="form-control"
         placeholder="Circumference"
       />
       <br />
@@ -32,7 +41,7 @@ function Circle() {
         type="number"
         min="1"
         name="area"
-        className="Parameter"
+        className="form-control"
         placeholder="Area"
       />
       <br />

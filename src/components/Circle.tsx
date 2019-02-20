@@ -6,7 +6,7 @@ export interface IProps {
   diameter?: number;
   circumference?: number;
   area?: number;
-  shapeValidation: string
+  shapeValidation?: string
 }
 
 

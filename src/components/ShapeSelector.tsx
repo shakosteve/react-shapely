@@ -1,20 +1,45 @@
 import * as React from "react";
 import "../styles/ShapeSelector.css";
-import Circle from "./Circle";
-// import Rectangle from './Rectangle';
-// import RightTriangle from "./RightTriangle";
+// import Circle from "./Circle";
+import NoShape from "./NoShape";
 
-class ShapeSelector extends React.Component {
-  constructor(props: any, context: any) {
-    super(props, context);
-    this.state = { selectedShape: "" };
+interface IProps {
+  selectedShape: string;
+  defaultShape: string;
+}
+
+interface IState {
+  selectedShape: string;
+  defaultShape: string;
+}
+
+let defaultShape = <NoShape />;
+
+function handleOnChange() {
+  defaultShape = <NoShape />;
+}
+
+class ShapeSelector extends React.Component<any, IState> {
+  constructor(props: IProps, state: IState) {
+    super(props, state);
+    this.state = {
+      defaultShape: props.defaultShape,
+      selectedShape: props.selectedShape
+    };
   }
 
   public render() {
+    this.setState = () => {
+      return defaultShape;
+    };
     return (
       <div className="ShapeSelector">
         <form>
-          <select defaultValue="" className="custom-select custom-select-bg">
+          <select
+            defaultValue=""
+            className="custom-select custom-select-bg"
+            onChange={handleOnChange}
+          >
             <option value="" disabled={true} hidden={true}>
               Choose a shape
             </option>
@@ -22,10 +47,12 @@ class ShapeSelector extends React.Component {
             <option value="Cicle">Circle</option>
             <option value="Triangle">Triangle</option>
           </select>
-          <Circle />
+          {this.state.selectedShape}
           <input type="button" className="btn btn-dark" value="Submit" />{" "}
           <input type="button" className="btn btn-dark" value="Clear" />
-          <div className="ShapeValidation"><label>shape validation</label></div>
+          <div className="ShapeValidation">
+            <label id="ShapeValidationMessage">shape validation</label>
+          </div>
         </form>
       </div>
     );

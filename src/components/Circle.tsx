@@ -12,7 +12,7 @@ export interface IProps {
 
 function Circle() {
   return (
-    <div className="ParameterDiv">
+    <div className="ParameterDiv" id="Circle">
       <input
         type="number"
         min="1"

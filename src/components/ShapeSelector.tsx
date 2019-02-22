@@ -1,55 +1,44 @@
 import * as React from "react";
 import "../styles/ShapeSelector.css";
-// import Circle from "./Circle";
-import NoShape from "./NoShape";
-
-interface IProps {
-  selectedShape: string;
-  defaultShape: string;
-}
+import Circle from "./Circle";
+import Rectangle from "./Rectangle";
+import RightTriangle from "./RightTriangle";
 
 interface IState {
-  selectedShape: string;
-  defaultShape: string;
+  selectedShape?: React.ReactNode;
 }
 
-let defaultShape = <NoShape />;
+const INITIAL_STATE: IState = {
+  selectedShape: <div className="NoShape" id="NoShape" />
+};
 
-function handleOnChange() {
-  defaultShape = <NoShape />;
-}
-
-class ShapeSelector extends React.Component<any, IState> {
-  constructor(props: IProps, state: IState) {
-    super(props, state);
-    this.state = {
-      defaultShape: props.defaultShape,
-      selectedShape: props.selectedShape
-    };
+class ShapeSelector extends React.Component<IState> {
+  public readonly state: IState = { ...INITIAL_STATE };
+  constructor(props) {
+    super(props);
+    this.handleOnChange = this.handleOnChange.bind(this);
   }
 
   public render() {
-    this.setState = () => {
-      return defaultShape;
-    };
     return (
       <div className="ShapeSelector">
         <form>
           <select
+            id="ss"
             defaultValue=""
             className="custom-select custom-select-bg"
-            onChange={handleOnChange}
+            onChange={this.handleOnChange}
           >
             <option value="" disabled={true} hidden={true}>
               Choose a shape
             </option>
             <option value="Rectangle">Rectangle</option>
-            <option value="Cicle">Circle</option>
-            <option value="Triangle">Triangle</option>
+            <option value="Circle">Circle</option>
+            <option value="RightTriangle">Right Triangle</option>
           </select>
           {this.state.selectedShape}
-          <input type="button" className="btn btn-dark" value="Submit" />{" "}
-          <input type="button" className="btn btn-dark" value="Clear" />
+          <input type="button" className="btn btn-dark" value="Submit" />{' '}
+          <input type="reset" className="btn btn-dark" value="Clear" />
           <div className="ShapeValidation">
             <label id="ShapeValidationMessage">shape validation</label>
           </div>
@@ -57,6 +46,26 @@ class ShapeSelector extends React.Component<any, IState> {
       </div>
     );
   }
+
+  private handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    switch (e.target.value) {
+      case "RightTriangle": {
+        this.setState({ selectedShape: <RightTriangle /> });
+        break;
+      }
+      case "Circle": {
+        this.setState({ selectedShape: <Circle /> });
+        break;
+      }
+      case "Rectangle": {
+        this.setState({ selectedShape: <Rectangle /> });
+        break;
+      }
+      default: {
+        this.setState({ selectedShape: INITIAL_STATE });
+      }
+    }
+  };
 }
 
 export default ShapeSelector;

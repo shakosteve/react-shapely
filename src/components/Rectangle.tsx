@@ -6,12 +6,12 @@ export interface IProps {
   width?: number;
   perimeter?: number;
   area?: number;
-  shapeValidation: string
+  shapeValidation?: string
 }
 
 function Rectangle() {
   return (
-    <div className="ParameterDiv">
+    <div className="ParameterDiv" id="Rectangle">
       <input
         type="number"
         min="1"

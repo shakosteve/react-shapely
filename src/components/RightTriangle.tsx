@@ -6,12 +6,12 @@ export interface IProps {
   legb?: number;
   hypotenuse?: number;
   perimeter?: number;
-  shapeValidation: string
+  shapeValidation?: string
 }
 
 function RightTriangle() {
   return (
-    <div className="ParameterDiv">
+    <div className="ParameterDiv" id="Triangle">
       <input
         type="number"
         min="1"

@@ -1,4 +1,77 @@
 .App {
-    margin-top: 25px;
-    text-align: center;
+  margin-top: 25px;
+  text-align: center;
+}
+
+.RetroMan {
+  font-size: 40px;
+  font-family: "Tangerine";
+  display: inline-block;
+  width: 200px;
+}
+.RetroManImage {
+  height: 225px;
+  vertical-align: bottom;
+}
+
+.RetroWoman {
+  font-size: 40px;
+  font-family: "Tangerine";
+  display: inline-block;
+  width: 200px;
+}
+.RetroWomanImage {
+  height: 225px;
+  transform: rotateY(180deg);
+  vertical-align: bottom;
+}
+
+.ShapeSelector {
+  font-size: 14px;
+  font-family: "Tangerine";
+  display: inline-block;
+  margin-right: 150px;
+  margin-left: 150px;
+}
+
+.custom-select {
+  font-family: "Calibri";
+  width: 300px;
+  font-size: 14px;
+  background-color: antiquewhite;
+  height: auto;
+  resize: none;
+}
+
+.btn {
+  width: 150px;
+  font-family: "Calibri";
+  font-size: 14px;
+}
+.ShapeValidation {
+  margin-top: 20px;
+  font-family: "Calibri";
+  font-size: 16px;
+}
+
+.form-control {
+  font-family: "Calibri";
+  width: 300px;
+  font-size: 14px;
+  background-color: antiquewhite;
+  height: auto;
+  resize: none;
+  margin: auto;
+}
+
+.ParameterDiv {
+  margin-top: 12px;
+  width: 300px;
+  height: 200px;
+  margin-bottom:10px;
+}
+.NoShape {
+  font-family: "Calibri";
+  width: 300px;
+  height: 200px;
 }

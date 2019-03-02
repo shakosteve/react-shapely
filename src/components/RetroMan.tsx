@@ -1,6 +1,6 @@
 import * as React from "react";
 import RetroManImage from "../images/telephone3.svg";
-import "../styles/RetroMan.css";
+import "../styles/App.css";
 
 function RetroMan() {
   return (

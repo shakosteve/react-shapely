@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../styles/ShapeSelector.css";
+import "../styles/App.css";
 import Circle from "./Circle";
 import Rectangle from "./Rectangle";
 import RightTriangle from "./RightTriangle";
@@ -14,9 +14,10 @@ const INITIAL_STATE: IState = {
 
 class ShapeSelector extends React.Component<IState> {
   public readonly state: IState = { ...INITIAL_STATE };
-  constructor(props) {
+  constructor(props: any) {
     super(props);
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.resetState = this.resetState.bind(this)
   }
 
   public render() {
@@ -37,14 +38,23 @@ class ShapeSelector extends React.Component<IState> {
             <option value="RightTriangle">Right Triangle</option>
           </select>
           {this.state.selectedShape}
-          <input type="button" className="btn btn-dark" value="Submit" />{' '}
-          <input type="reset" className="btn btn-dark" value="Clear" />
+          <input type="button" className="btn btn-dark" value="Submit" />{" "}
+          <input
+            type="reset"
+            className="btn btn-dark"
+            value="Clear"
+            onClick={this.resetState}
+          />
           <div className="ShapeValidation">
             <label id="ShapeValidationMessage">shape validation</label>
           </div>
         </form>
       </div>
     );
+  }
+
+  private resetState(){
+    this.setState(INITIAL_STATE)
   }
 
   private handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {

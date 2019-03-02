@@ -1,6 +1,6 @@
 import * as React from "react";
 import RetroWomanImage from "../images/retrowoman3.svg";
-import "../styles/RetroWoman.css";
+import "../styles/App.css";
 function RetroWoman() {
   return (
     <div className="RetroWoman">

@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../styles/ShapeParameters.css";
+import "../styles/App.css";
 
 export interface IProps {
   length?: number;

@@ -29,7 +29,7 @@ class ShapeSelector extends React.Component<IState> {
       <div className="ShapeSelector">
         <form>
           <select
-            id="ss"
+            id="shapeSelector"
             defaultValue=""
             className="custom-select custom-select-bg"
             onChange={this.handleOnChange}
@@ -42,7 +42,8 @@ class ShapeSelector extends React.Component<IState> {
             <option value="RightTriangle">Right Triangle</option>
           </select>
           {this.state.selectedShape}
-          <input type="button" className="btn btn-dark" value="Submit" />{" "}
+          <input type="button" className="btn btn-dark" value="Submit" />
+          {" "}
           <input
             type="reset"
             className="btn btn-dark"

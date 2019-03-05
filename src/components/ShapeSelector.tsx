@@ -9,7 +9,7 @@ interface IState {
 }
 
 interface IProps {
-  selectedShape?: IState
+  selectedShape?: IState;
 }
 
 const INITIAL_STATE: IState = {
@@ -18,9 +18,9 @@ const INITIAL_STATE: IState = {
 
 class ShapeSelector extends React.Component<IState> {
   public readonly state: IState = { ...INITIAL_STATE };
-  constructor(props: IProps) {
+  constructor(props: IProps, state: IState) {
     super(props);
-    this.handleOnChange = this.handleOnChange.bind(this, this.state);
+    this.handleOnChange = this.handleOnChange.bind(this);
     this.resetShapeSelection = this.resetShapeSelection.bind(this);
   }
 
@@ -64,7 +64,9 @@ class ShapeSelector extends React.Component<IState> {
   private handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     switch (e.target.value) {
       case "RightTriangle": {
-        this.setState({ selectedShape: <RightTriangle /> });
+        this.setState({
+          selectedShape: <RightTriangle />
+        });
         break;
       }
       case "Circle": {
@@ -74,7 +76,9 @@ class ShapeSelector extends React.Component<IState> {
         break;
       }
       case "Rectangle": {
-        this.setState({ selectedShape: <Rectangle /> });
+        this.setState({
+          selectedShape: <Rectangle />
+        });
         break;
       }
       default: {

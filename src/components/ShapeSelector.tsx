@@ -5,15 +5,22 @@ import Rectangle from "./Rectangle";
 import RightTriangle from "./RightTriangle";
 
 interface IState {
-  selectedShape?: React.ReactNode;
+  selectedShape?: keyof(typeof shapes);
 }
 
+const shapes = {
+  circle: <Circle />,  
+  noShape: <div className="NoShape" id="NoShape" />,
+  rectangle: <Rectangle />,
+  rightTriangle: <RightTriangle />,  
+};
+
 interface IProps {
-  selectedShape?: IState;
+  selectedShape?: keyof(typeof shapes);
 }
 
 const INITIAL_STATE: IState = {
-  selectedShape: <div className="NoShape" id="NoShape" />
+  selectedShape: undefined
 };
 
 class ShapeSelector extends React.Component<IState> {
@@ -41,7 +48,7 @@ class ShapeSelector extends React.Component<IState> {
             <option value="Circle">Circle</option>
             <option value="RightTriangle">Right Triangle</option>
           </select>
-          {this.state.selectedShape}
+          {shapes[this.state.selectedShape || 'noShape']}
           <input type="button" className="btn btn-dark" value="Submit" />
           {" "}
           <input
@@ -66,19 +73,19 @@ class ShapeSelector extends React.Component<IState> {
     switch (e.target.value) {
       case "RightTriangle": {
         this.setState({
-          selectedShape: <RightTriangle />
+          selectedShape: 'rightTriangle'
         });
         break;
       }
       case "Circle": {
         this.setState({
-          selectedShape: <Circle />
+          selectedShape: 'circle'
         });
         break;
       }
       case "Rectangle": {
         this.setState({
-          selectedShape: <Rectangle />
+          selectedShape: 'rectangle'
         });
         break;
       }

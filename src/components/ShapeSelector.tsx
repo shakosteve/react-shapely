@@ -8,16 +8,20 @@ interface IState {
   selectedShape?: React.ReactNode;
 }
 
+interface IProps {
+  selectedShape?: IState
+}
+
 const INITIAL_STATE: IState = {
   selectedShape: <div className="NoShape" id="NoShape" />
 };
 
 class ShapeSelector extends React.Component<IState> {
   public readonly state: IState = { ...INITIAL_STATE };
-  constructor(props: any) {
+  constructor(props: IProps) {
     super(props);
-    this.handleOnChange = this.handleOnChange.bind(this);
-    this.resetState = this.resetState.bind(this)
+    this.handleOnChange = this.handleOnChange.bind(this, this.state);
+    this.resetShapeSelection = this.resetShapeSelection.bind(this);
   }
 
   public render() {
@@ -43,7 +47,7 @@ class ShapeSelector extends React.Component<IState> {
             type="reset"
             className="btn btn-dark"
             value="Clear"
-            onClick={this.resetState}
+            onClick={this.resetShapeSelection}
           />
           <div className="ShapeValidation">
             <label id="ShapeValidationMessage">shape validation</label>
@@ -53,8 +57,8 @@ class ShapeSelector extends React.Component<IState> {
     );
   }
 
-  private resetState(){
-    this.setState(INITIAL_STATE)
+  private resetShapeSelection() {
+    this.setState(INITIAL_STATE);
   }
 
   private handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -64,7 +68,9 @@ class ShapeSelector extends React.Component<IState> {
         break;
       }
       case "Circle": {
-        this.setState({ selectedShape: <Circle /> });
+        this.setState({
+          selectedShape: <Circle />
+        });
         break;
       }
       case "Rectangle": {

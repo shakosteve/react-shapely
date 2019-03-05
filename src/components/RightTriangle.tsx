@@ -1,7 +1,7 @@
 import * as React from "react";
 import "../styles/App.css";
 
-export interface IRectangle {
+export interface IRightTriangle {
   lega?: number;
   legb?: number;
   hypotenuse?: number;
@@ -10,10 +10,10 @@ export interface IRectangle {
 }
 
 export interface IState{
-  state: IRectangle
+  state: IRightTriangle
 }
 
-function RightTriangle(props: IRectangle, state: IState) {
+function RightTriangle(props: IRightTriangle, state: IState) {
   return (
     <div className="ParameterDiv" id="Triangle">
       <input

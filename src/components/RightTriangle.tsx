@@ -1,7 +1,7 @@
 import * as React from "react";
 import "../styles/App.css";
 
-export interface IProps {
+export interface IRectangle {
   lega?: number;
   legb?: number;
   hypotenuse?: number;
@@ -9,7 +9,11 @@ export interface IProps {
   shapeValidation?: string
 }
 
-function RightTriangle() {
+export interface IState{
+  state: IRectangle
+}
+
+function RightTriangle(props: IRectangle, state: IState) {
   return (
     <div className="ParameterDiv" id="Triangle">
       <input
@@ -18,6 +22,7 @@ function RightTriangle() {
         name="lega"
         className="form-control"
         placeholder="Leg A"
+        value={props.lega}
       />
       <br />
       <input
@@ -26,6 +31,7 @@ function RightTriangle() {
         name="legb"
         className="form-control"
         placeholder="Leg B"
+        value={props.legb}
       />
       <br />
       <input
@@ -34,6 +40,7 @@ function RightTriangle() {
         name="hypotenuse"
         className="form-control"
         placeholder="Hypotenuse"
+        value={props.hypotenuse}
       />
       <br />
       <input
@@ -42,6 +49,7 @@ function RightTriangle() {
         name="perimeter"
         className="form-control"
         placeholder="Perimeter"
+        value={props.perimeter}
       />
       <br />
     </div>

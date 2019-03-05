@@ -1,15 +1,19 @@
 import * as React from "react";
 import "../styles/App.css";
 
-export interface IProps {
-  length?: number;
+export interface IRectangle {
+  height?: number; // length is a reserved word
   width?: number;
   perimeter?: number;
   area?: number;
-  shapeValidation?: string
+  shapeValidation?: string;
 }
 
-function Rectangle() {
+export interface IState {
+  rectangle: IRectangle;
+}
+
+function Rectangle(props: IRectangle, state: IState) {
   return (
     <div className="ParameterDiv" id="Rectangle">
       <input
@@ -18,6 +22,7 @@ function Rectangle() {
         name="length"
         className="form-control"
         placeholder="Length"
+        value={props.height}
       />
       <br />
       <input
@@ -26,6 +31,7 @@ function Rectangle() {
         name="width"
         className="form-control"
         placeholder="Width"
+        value={props.width}
       />
       <br />
       <input
@@ -34,6 +40,7 @@ function Rectangle() {
         name="perimeter"
         className="form-control"
         placeholder="Perimeter"
+        value={props.perimeter}
       />
       <br />
       <input
@@ -42,6 +49,7 @@ function Rectangle() {
         name="area"
         className="form-control"
         placeholder="Area"
+        value={props.area}
       />
     </div>
   );

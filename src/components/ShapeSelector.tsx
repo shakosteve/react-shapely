@@ -12,7 +12,7 @@ const shapes = {
   circle: <Circle />,  
   noShape: <div className="NoShape" id="NoShape" />,
   rectangle: <Rectangle />,
-  rightTriangle: <RightTriangle />,  
+  rightTriangle: <RightTriangle />  
 };
 
 interface IProps {

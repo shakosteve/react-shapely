@@ -10,50 +10,52 @@ export interface ICircle {
 }
 
 export interface IState {
-  state: ICircle;
+  circle: ICircle;
 }
 
-function Circle(props: ICircle, state: IState) {
-  return (
-    <div className="ParameterDiv" id="Circle">
-      <input
-        type="number"
-        min="1"
-        name="radius"
-        className="form-control"
-        placeholder="Radius"
-        value={props.radius}
-      />
-      <br />
-      <input
-        type="number"
-        min="1"
-        name="diameter"
-        className="form-control"
-        placeholder="Diameter"
-        value={props.diameter}
-      />
-      <br />
-      <input
-        type="number"
-        min="1"
-        name="circumference"
-        className="form-control"
-        placeholder="Circumference"
-        value={props.circumference}
-      />
-      <br />
-      <input
-        type="number"
-        min="1"
-        name="area"
-        className="form-control"
-        placeholder="Area"
-        value={props.area}
-      />
-      <br />
-    </div>
-  );
+class Circle extends React.Component<{}, IState> {
+  public render() {
+    return (
+      <div className="ParameterDiv" id="Circle">
+        <input
+          type="number"
+          min="1"
+          name="radius"
+          className="form-control"
+          placeholder="Radius"
+          value={this.state.circle.radius}
+        />
+        <br />
+        <input
+          type="number"
+          min="1"
+          name="diameter"
+          className="form-control"
+          placeholder="Diameter"
+          value={this.state.circle.diameter}
+        />
+        <br />
+        <input
+          type="number"
+          min="1"
+          name="circumference"
+          className="form-control"
+          placeholder="Circumference"
+          value={this.state.circle.circumference}
+        />
+        <br />
+        <input
+          type="number"
+          min="1"
+          name="area"
+          className="form-control"
+          placeholder="Area"
+          value={this.state.circle.area}
+        />
+        <br />
+      </div>
+    );
+  }
 }
 
 export default Circle;

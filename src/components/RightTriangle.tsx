@@ -6,56 +6,54 @@ export interface IRightTriangle {
   legb?: number;
   hypotenuse?: number;
   perimeter?: number;
-  shapeValidation?: string;
+  shapeValidation?: string
 }
 
-export interface IState {
-  rightTriangle: IRightTriangle;
+export interface IState{
+  state: IRightTriangle
 }
 
-class RightTriangle extends React.Component<{}, IState> {
-  public render() {
-    return (
-      <div className="ParameterDiv" id="Triangle">
-        <input
-          type="number"
-          min="1"
-          name="lega"
-          className="form-control"
-          placeholder="Leg A"
-          value={this.state.rightTriangle.lega}
-        />
-        <br />
-        <input
-          type="number"
-          min="1"
-          name="legb"
-          className="form-control"
-          placeholder="Leg B"
-          value={this.state.rightTriangle.legb}
-        />
-        <br />
-        <input
-          type="number"
-          min="1"
-          name="hypotenuse"
-          className="form-control"
-          placeholder="Hypotenuse"
-          value={this.state.rightTriangle.hypotenuse}
-        />
-        <br />
-        <input
-          type="number"
-          min="1"
-          name="perimeter"
-          className="form-control"
-          placeholder="Perimeter"
-          value={this.state.rightTriangle.perimeter}
-        />
-        <br />
-      </div>
-    );
-  }
+function RightTriangle(props: IRightTriangle, state: IState) {
+  return (
+    <div className="ParameterDiv" id="Triangle">
+      <input
+        type="number"
+        min="1"
+        name="lega"
+        className="form-control"
+        placeholder="Leg A"
+        value={props.lega}
+      />
+      <br />
+      <input
+        type="number"
+        min="1"
+        name="legb"
+        className="form-control"
+        placeholder="Leg B"
+        value={props.legb}
+      />
+      <br />
+      <input
+        type="number"
+        min="1"
+        name="hypotenuse"
+        className="form-control"
+        placeholder="Hypotenuse"
+        value={props.hypotenuse}
+      />
+      <br />
+      <input
+        type="number"
+        min="1"
+        name="perimeter"
+        className="form-control"
+        placeholder="Perimeter"
+        value={props.perimeter}
+      />
+      <br />
+    </div>
+  );
 }
 
 export default RightTriangle;

@@ -10,7 +10,7 @@ export interface IRightTriangle {
 }
 
 export interface IState{
-  state: IRightTriangle
+  rightTriangle: IRightTriangle
 }
 
 class RightTriangle extends React.Component<IRightTriangle, IState> {

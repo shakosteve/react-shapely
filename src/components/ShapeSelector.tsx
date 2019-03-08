@@ -5,7 +5,7 @@ import Rectangle from "./Rectangle";
 import RightTriangle from "./RightTriangle";
 
 interface IProps {
-  selectedShape: keyof (typeof shapes);
+  selectedShape?: keyof (typeof shapes);
 }
 interface IState {
   selectedShape?: keyof(typeof shapes);

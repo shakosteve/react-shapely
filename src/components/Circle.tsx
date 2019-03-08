@@ -13,7 +13,7 @@ export interface IState {
   circle: ICircle;
 }
 
-class Circle extends React.Component<{}, IState> {
+class Circle extends React.Component<ICircle, IState> {
   public render() {
     return (
       <div className="ParameterDiv" id="Circle">

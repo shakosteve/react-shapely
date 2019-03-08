@@ -13,7 +13,7 @@ export interface IState {
   rightTriangle: IRightTriangle;
 }
 
-class RightTriangle extends React.Component<{}, IState> {
+class RightTriangle extends React.Component<IRightTriangle, IState> {
   public render() {
     return (
       <div className="ParameterDiv" id="Triangle">

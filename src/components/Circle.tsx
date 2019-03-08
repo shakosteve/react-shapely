@@ -10,7 +10,7 @@ export interface ICircle {
 }
 
 export interface IState {
-  state: ICircle;
+  circle: ICircle;
 }
 
 class Circle extends React.Component<ICircle, IState> {

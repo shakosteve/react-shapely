@@ -13,14 +13,14 @@ export interface IState {
   rectangle: IRectangle;
 }
 
-class Rectangle extends React.Component<{}, IState>{
+class Rectangle extends React.Component<IRectangle, IState>{
   public render() {
     return (
       <div className="ParameterDiv" id="Rectangle">
         <input
           type="number"
           min="1"
-          name="length"
+          name="height"
           className="form-control"
           placeholder="Length"
           value={this.state.rectangle.height}

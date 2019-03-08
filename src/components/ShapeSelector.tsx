@@ -4,13 +4,16 @@ import Circle from "./Circle";
 import Rectangle from "./Rectangle";
 import RightTriangle from "./RightTriangle";
 
+interface IProps {
+  selectedShape: keyof (typeof shapes);
+}
 interface IState {
   selectedShape?: keyof(typeof shapes);
 }
 
 const shapes = {
-  circle: <Circle />,  
-  noShape: <div className="NoShape" id="NoShape" />,
+  circle: <Circle />,
+  noShape: <div className="NoShape"/>,
   rectangle: <Rectangle />,
   rightTriangle: <RightTriangle />  
 };
@@ -20,7 +23,7 @@ interface IProps {
 }
 
 const INITIAL_STATE: IState = {
-  selectedShape: undefined
+  selectedShape: 'noShape'
 };
 
 class ShapeSelector extends React.Component<IState> {
@@ -44,9 +47,9 @@ class ShapeSelector extends React.Component<IState> {
             <option value="" disabled={true} hidden={true}>
               Choose a shape
             </option>
-            <option value="Rectangle">Rectangle</option>
-            <option value="Circle">Circle</option>
-            <option value="RightTriangle">Right Triangle</option>
+            <option value="rectangle">Rectangle</option>
+            <option value="circle">Circle</option>
+            <option value="rightTriangle">Right Triangle</option>
           </select>
           {shapes[this.state.selectedShape || 'noShape']}
           <input type="button" className="btn btn-dark" value="Submit" />
@@ -71,21 +74,21 @@ class ShapeSelector extends React.Component<IState> {
 
   private handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     switch (e.target.value) {
-      case "RightTriangle": {
+      case 'rectangle': {
         this.setState({
-          selectedShape: 'rightTriangle'
+          selectedShape: shapes.rectangle
         });
         break;
       }
-      case "Circle": {
+      case "circle": {
         this.setState({
-          selectedShape: 'circle'
+          selectedShape: shapes.circle
         });
         break;
       }
-      case "Rectangle": {
+      case "rightTriangle": {
         this.setState({
-          selectedShape: 'rectangle'
+          selectedShape: shapes.rightTriangle
         });
         break;
       }

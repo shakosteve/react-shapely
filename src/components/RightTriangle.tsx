@@ -6,11 +6,11 @@ export interface IRightTriangle {
   legb?: number;
   hypotenuse?: number;
   perimeter?: number;
-  shapeValidation?: string;
+  shapeValidation?: string
 }
 
-export interface IState {
-  rightTriangle: IRightTriangle;
+export interface IState{
+  state: IRightTriangle
 }
 
 class RightTriangle extends React.Component<IRightTriangle, IState> {

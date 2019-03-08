@@ -8,15 +8,19 @@ interface IProps {
   selectedShape: keyof (typeof shapes);
 }
 interface IState {
-  selectedShape?: keyof (typeof shapes);
+  selectedShape?: keyof(typeof shapes);
 }
 
 const shapes = {
   circle: <Circle />,
   noShape: <div className="NoShape"/>,
   rectangle: <Rectangle />,
-  rightTriangle: <RightTriangle />
+  rightTriangle: <RightTriangle />  
 };
+
+interface IProps {
+  selectedShape?: keyof(typeof shapes);
+}
 
 const INITIAL_STATE: IState = {
   selectedShape: 'noShape'
@@ -48,7 +52,8 @@ class ShapeSelector extends React.Component<IState> {
             <option value="rightTriangle">Right Triangle</option>
           </select>
           {shapes[this.state.selectedShape || 'noShape']}
-          <input type="button" className="btn btn-dark" value="Submit" />{" "}
+          <input type="button" className="btn btn-dark" value="Submit" />
+          {" "}
           <input
             type="reset"
             className="btn btn-dark"

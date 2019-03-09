@@ -10,10 +10,26 @@ export interface IRectangle {
 }
 
 export interface IState {
-  rectangle: IRectangle;
+  height?: number; // length is a reserved word
+  width?: number;
+  perimeter?: number;
+  area?: number;
+  shapeValidation?: string;
 }
 
-class Rectangle extends React.Component<IRectangle, IState>{
+const INITIAL_STATE: IState = {
+  area: undefined,
+  height: undefined,
+  perimeter: undefined,
+  shapeValidation: "",
+  width: undefined
+};
+
+class Rectangle extends React.Component<IRectangle, IState> {
+  public readonly state: IState = { ...INITIAL_STATE };
+  constructor(props: IRectangle, state: IState) {
+    super(props);
+  }
   public render() {
     return (
       <div className="ParameterDiv" id="Rectangle">
@@ -23,7 +39,7 @@ class Rectangle extends React.Component<IRectangle, IState>{
           name="height"
           className="form-control"
           placeholder="Length"
-          value={this.state.rectangle.height}
+          value={this.props.height}
         />
         <br />
         <input
@@ -32,7 +48,7 @@ class Rectangle extends React.Component<IRectangle, IState>{
           name="width"
           className="form-control"
           placeholder="Width"
-          value={this.state.rectangle.width}
+          value={this.props.width}
         />
         <br />
         <input
@@ -41,7 +57,7 @@ class Rectangle extends React.Component<IRectangle, IState>{
           name="perimeter"
           className="form-control"
           placeholder="Perimeter"
-          value={this.state.rectangle.perimeter}
+          value={this.props.perimeter}
         />
         <br />
         <input
@@ -50,7 +66,7 @@ class Rectangle extends React.Component<IRectangle, IState>{
           name="area"
           className="form-control"
           placeholder="Area"
-          value={this.state.rectangle.area}
+          value={this.props.area}
         />
       </div>
     );

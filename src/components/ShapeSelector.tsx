@@ -1,8 +1,8 @@
-import * as React from "react";
-import "../styles/App.css";
-import Circle from "./Circle";
-import Rectangle from "./Rectangle";
-import RightTriangle from "./RightTriangle";
+import * as React from 'react';
+import '../styles/App.css';
+import Circle from './Circle';
+import Rectangle from './Rectangle';
+import RightTriangle from './RightTriangle';
 
 interface IProps {
   selectedShape?: keyof (typeof shapes);
@@ -13,14 +13,10 @@ interface IState {
 
 const shapes = {
   circle: <Circle />,
-  noShape: <div className="NoShape"/>,
+  noShape: <div className='NoShape'/>,
   rectangle: <Rectangle />,
   rightTriangle: <RightTriangle />  
 };
-
-interface IProps {
-  selectedShape?: keyof(typeof shapes);
-}
 
 const INITIAL_STATE: IState = {
   selectedShape: 'noShape'
@@ -36,32 +32,32 @@ class ShapeSelector extends React.Component<IState> {
 
   public render() {
     return (
-      <div className="ShapeSelector">
+      <div className='ShapeSelector'>
         <form>
           <select
-            id="shapeSelector"
-            defaultValue=""
-            className="custom-select custom-select-bg"
+            id='shapeSelector'
+            defaultValue=''
+            className='custom-select custom-select-bg'
             onChange={this.handleOnChange}
           >
-            <option value="" disabled={true} hidden={true}>
+            <option value='' disabled={true} hidden={true}>
               Choose a shape
             </option>
-            <option value="rectangle">Rectangle</option>
-            <option value="circle">Circle</option>
-            <option value="rightTriangle">Right Triangle</option>
+            <option value='rectangle'>Rectangle</option>
+            <option value='circle'>Circle</option>
+            <option value='rightTriangle'>Right Triangle</option>
           </select>
           {shapes[this.state.selectedShape || 'noShape']}
-          <input type="button" className="btn btn-dark" value="Submit" />
-          {" "}
+          <input type='button' className='btn btn-dark' value='Submit' />
+          {' '}
           <input
-            type="reset"
-            className="btn btn-dark"
-            value="Clear"
+            type='reset'
+            className='btn btn-dark'
+            value='Clear'
             onClick={this.resetShapeSelection}
           />
-          <div className="ShapeValidation">
-            <label id="ShapeValidationMessage">shape validation</label>
+          <div className='ShapeValidation'>
+            <label id='ShapeValidationMessage'>shape validation</label>
           </div>
         </form>
       </div>
@@ -76,19 +72,19 @@ class ShapeSelector extends React.Component<IState> {
     switch (e.target.value) {
       case 'rectangle': {
         this.setState({
-          selectedShape: shapes.rectangle
+          selectedShape: 'rectangle'
         });
         break;
       }
-      case "circle": {
+      case 'circle': {
         this.setState({
-          selectedShape: shapes.circle
+          selectedShape: 'circle'
         });
         break;
       }
-      case "rightTriangle": {
+      case 'rightTriangle': {
         this.setState({
-          selectedShape: shapes.rightTriangle
+          selectedShape: 'rightTriangle'
         });
         break;
       }

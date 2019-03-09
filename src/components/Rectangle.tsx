@@ -40,6 +40,7 @@ class Rectangle extends React.Component<IRectangle, IState> {
           className="form-control"
           placeholder="Length"
           value={this.props.height}
+          onChange={this.handleOnChange}
         />
         <br />
         <input
@@ -49,6 +50,7 @@ class Rectangle extends React.Component<IRectangle, IState> {
           className="form-control"
           placeholder="Width"
           value={this.props.width}
+          onChange={this.handleOnChange}
         />
         <br />
         <input
@@ -58,6 +60,7 @@ class Rectangle extends React.Component<IRectangle, IState> {
           className="form-control"
           placeholder="Perimeter"
           value={this.props.perimeter}
+          onChange={this.handleOnChange}
         />
         <br />
         <input
@@ -67,10 +70,32 @@ class Rectangle extends React.Component<IRectangle, IState> {
           className="form-control"
           placeholder="Area"
           value={this.props.area}
+          onChange={this.handleOnChange}
         />
       </div>
     );
   }
+  
+  private handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    switch (e.target.name) {
+      case "height": {
+        this.setState({ height: e.target.valueAsNumber });
+        break;
+      }
+      case "width": {
+        this.setState({ width: e.target.valueAsNumber });
+        break;
+      }
+      case "perimeter": {
+        this.setState({ perimeter: e.target.valueAsNumber });
+        break;
+      }
+      case "area": {
+        this.setState({ area: e.target.valueAsNumber });
+        break;
+      }
+    }
+  };
 }
 
 export default Rectangle;

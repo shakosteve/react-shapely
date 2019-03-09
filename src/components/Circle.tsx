@@ -1,5 +1,5 @@
-import * as React from 'react';
-import '../styles/App.css';
+import * as React from "react";
+import "../styles/App.css";
 
 export interface ICircle {
   radius?: number;
@@ -14,7 +14,7 @@ export interface IState {
   circumference?: number;
   diameter?: number;
   radius?: number;
-  shapeValidation?: '';
+  shapeValidation?: "";
 }
 
 const INITIAL_STATE: IState = {
@@ -22,7 +22,7 @@ const INITIAL_STATE: IState = {
   circumference: undefined,
   diameter: undefined,
   radius: undefined,
-  shapeValidation: ''
+  shapeValidation: ""
 };
 
 class Circle extends React.Component<ICircle, IState> {
@@ -33,43 +33,43 @@ class Circle extends React.Component<ICircle, IState> {
   }
   public render() {
     return (
-      <div className='ParameterDiv' id='Circle'>
+      <div className="ParameterDiv" id="Circle">
         <input
-          type='number'
-          min='1'
-          name='radius'
-          className='form-control'
-          placeholder='Radius'
+          type="number"
+          min="1"
+          name="radius"
+          className="form-control"
+          placeholder="Radius"
           value={this.props.radius}
           onChange={this.handleOnChange}
         />
         <br />
         <input
-          type='number'
-          min='1'
-          name='diameter'
-          className='form-control'
-          placeholder='Diameter'
+          type="number"
+          min="1"
+          name="diameter"
+          className="form-control"
+          placeholder="Diameter"
           value={this.props.diameter}
           onChange={this.handleOnChange}
         />
         <br />
         <input
-          type='number'
-          min='1'
-          name='circumference'
-          className='form-control'
-          placeholder='Circumference'
+          type="number"
+          min="1"
+          name="circumference"
+          className="form-control"
+          placeholder="Circumference"
           value={this.props.circumference}
           onChange={this.handleOnChange}
         />
         <br />
         <input
-          type='number'
-          min='1'
-          name='area'
-          className='form-control'
-          placeholder='Area'
+          type="number"
+          min="1"
+          name="area"
+          className="form-control"
+          placeholder="Area"
           value={this.props.area}
           onChange={this.handleOnChange}
         />
@@ -80,19 +80,19 @@ class Circle extends React.Component<ICircle, IState> {
 
   private handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
-      case 'radius': {
+      case "radius": {
         this.setState({ radius: e.target.valueAsNumber });
         break;
       }
-      case 'diameter': {
+      case "diameter": {
         this.setState({ diameter: e.target.valueAsNumber });
         break;
       }
-      case 'circumference': {
+      case "circumference": {
         this.setState({ circumference: e.target.valueAsNumber });
         break;
       }
-      case 'area': {
+      case "area": {
         this.setState({ area: e.target.valueAsNumber });
         break;
       }

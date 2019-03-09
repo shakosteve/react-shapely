@@ -6,14 +6,29 @@ export interface IRightTriangle {
   legb?: number;
   hypotenuse?: number;
   perimeter?: number;
-  shapeValidation?: string
+  shapeValidation?: string;
 }
 
-export interface IState{
-  rightTriangle: IRightTriangle
+export interface IState {
+  lega?: number;
+  legb?: number;
+  hypotenuse?: number;
+  perimeter?: number;
+  shapeValidation?: string;
 }
 
+const INITIAL_STATE: IRightTriangle = {
+  hypotenuse: undefined,
+  lega: undefined,
+  legb: undefined,
+  perimeter: undefined,
+  shapeValidation: ''
+};
 class RightTriangle extends React.Component<IRightTriangle, IState> {
+  public readonly state: IState = { ...INITIAL_STATE };
+  constructor(props: IRightTriangle, state: IState) {
+    super(props);
+  }
   public render() {
     return (
       <div className="ParameterDiv" id="Triangle">
@@ -23,7 +38,7 @@ class RightTriangle extends React.Component<IRightTriangle, IState> {
           name="lega"
           className="form-control"
           placeholder="Leg A"
-          value={this.state.rightTriangle.lega}
+          value={this.props.lega}
         />
         <br />
         <input
@@ -32,7 +47,7 @@ class RightTriangle extends React.Component<IRightTriangle, IState> {
           name="legb"
           className="form-control"
           placeholder="Leg B"
-          value={this.state.rightTriangle.legb}
+          value={this.props.legb}
         />
         <br />
         <input
@@ -41,7 +56,7 @@ class RightTriangle extends React.Component<IRightTriangle, IState> {
           name="hypotenuse"
           className="form-control"
           placeholder="Hypotenuse"
-          value={this.state.rightTriangle.hypotenuse}
+          value={this.props.hypotenuse}
         />
         <br />
         <input
@@ -50,7 +65,7 @@ class RightTriangle extends React.Component<IRightTriangle, IState> {
           name="perimeter"
           className="form-control"
           placeholder="Perimeter"
-          value={this.state.rightTriangle.perimeter}
+          value={this.props.perimeter}
         />
         <br />
       </div>

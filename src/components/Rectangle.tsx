@@ -1,7 +1,12 @@
 import * as React from "react";
 import "../styles/App.css";
 
+export interface IDimensions {
+  key: string;
+  value: number;
+}
 export interface IRectangle {
+  dimensions: IDimensions;
   height?: number; // length is a reserved word
   width?: number;
   perimeter?: number;
@@ -10,6 +15,7 @@ export interface IRectangle {
 }
 
 export interface IState {
+  dimensions: IDimensions;
   height?: number; // length is a reserved word
   width?: number;
   perimeter?: number;
@@ -19,6 +25,7 @@ export interface IState {
 
 const INITIAL_STATE: IState = {
   area: undefined,
+  dimensions: { key: "", value: 0 },
   height: undefined,
   perimeter: undefined,
   shapeValidation: "",
@@ -27,8 +34,9 @@ const INITIAL_STATE: IState = {
 
 class Rectangle extends React.Component<IRectangle, IState> {
   public readonly state: IState = { ...INITIAL_STATE };
-  constructor(props: IRectangle, state: IState) {
+  constructor(props: IRectangle, state: IState, dimensions: IDimensions) {
     super(props);
+    this.state.dimensions = dimensions
   }
   public render() {
     return (
@@ -75,23 +83,37 @@ class Rectangle extends React.Component<IRectangle, IState> {
       </div>
     );
   }
-  
+
   private handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     switch (e.target.name) {
       case "height": {
         this.setState({ height: e.target.valueAsNumber });
+        this.setState({
+          dimensions: { key: e.target.name, value: e.target.valueAsNumber }
+        });
+
         break;
       }
       case "width": {
         this.setState({ width: e.target.valueAsNumber });
+        this.setState({
+          dimensions: { key: e.target.name, value: e.target.valueAsNumber }
+        });
+
         break;
       }
       case "perimeter": {
         this.setState({ perimeter: e.target.valueAsNumber });
+        this.setState({
+          dimensions: { key: e.target.name, value: e.target.valueAsNumber }
+        });
         break;
       }
       case "area": {
         this.setState({ area: e.target.valueAsNumber });
+        this.setState({
+          dimensions: { key: e.target.name, value: e.target.valueAsNumber }
+        });
         break;
       }
     }

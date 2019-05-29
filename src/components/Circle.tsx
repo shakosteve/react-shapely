@@ -6,28 +6,18 @@ export interface ICircle {
   diameter?: number;
   circumference?: number;
   area?: number;
-  shapeValidation?: string;
 }
 
-export interface IState {
-  area?: number;
-  circumference?: number;
-  diameter?: number;
-  radius?: number;
-  shapeValidation?: "";
-}
-
-const INITIAL_STATE: IState = {
+const INITIAL_STATE: ICircle = {
   area: undefined,
   circumference: undefined,
   diameter: undefined,
-  radius: undefined,
-  shapeValidation: ""
+  radius: undefined
 };
 
-class Circle extends React.Component<ICircle, IState> {
-  public readonly state: IState = { ...INITIAL_STATE };
-  constructor(props: ICircle, state: IState) {
+class Circle extends React.Component<ICircle> {
+  public readonly state: ICircle = { ...INITIAL_STATE };
+  constructor(props: ICircle, state: ICircle) {
     super(props);
     this.handleOnChange = this.handleOnChange.bind(this);
   }

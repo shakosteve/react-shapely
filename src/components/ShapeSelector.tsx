@@ -1,46 +1,39 @@
 import * as React from "react";
 import "../styles/App.css";
 import Circle from "./Circle";
-import Rectangle, { IDimensions } from "./Rectangle";
+import Rectangle from "./Rectangle";
 import RightTriangle from "./RightTriangle";
 
 interface IProps {
   selectedShape?: keyof (typeof shapes);
   validationMessage?: string;
-  dimensions?: IDimensions;
 }
 interface IState {
   selectedShape?: keyof (typeof shapes);
+  isValid: boolean;
   validationMessage?: string;
-  dimensions?: IDimensions;
 }
 
-const parameters: IDimensions = {
-  key: "",
-  value: 0
-};
 const shapes = {
   circle: <Circle />,
   noShape: <div className="NoShape" />,
-  rectangle: <Rectangle dimensions={parameters} />,
+  rectangle: <Rectangle />,
   rightTriangle: <RightTriangle />
 };
 
 const INITIAL_STATE: IState = {
-  dimensions: { key: "", value: 0 },
+  isValid: false,
   selectedShape: "noShape",
   validationMessage: "Choose a shape"
 };
 
-class ShapeSelector extends React.Component<IProps, IState, IDimensions> {
+class ShapeSelector extends React.Component<IProps, IState> {
   public readonly state: IState = { ...INITIAL_STATE };
-  constructor(props: IProps, state: IState, dimensions: IDimensions) {
+  constructor(props: IProps, state: IState) {
     super(props);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.resetShapeSelection = this.resetShapeSelection.bind(this);
     this.isValidated = this.isValidated.bind(this);
-    dimensions = parameters
-    this.state = {dimensions: {key: dimensions.key, value: dimensions.value}};
   }
 
   public render() {

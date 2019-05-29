@@ -6,27 +6,17 @@ export interface IRightTriangle {
   legb?: number;
   hypotenuse?: number;
   perimeter?: number;
-  shapeValidation?: string;
-}
-
-export interface IState {
-  lega?: number;
-  legb?: number;
-  hypotenuse?: number;
-  perimeter?: number;
-  shapeValidation?: string;
 }
 
 const INITIAL_STATE: IRightTriangle = {
   hypotenuse: undefined,
   lega: undefined,
   legb: undefined,
-  perimeter: undefined,
-  shapeValidation: ""
+  perimeter: undefined
 };
-class RightTriangle extends React.Component<IRightTriangle, IState> {
-  public readonly state: IState = { ...INITIAL_STATE };
-  constructor(props: IRightTriangle, state: IState) {
+class RightTriangle extends React.Component<IRightTriangle> {
+  public readonly state: IRightTriangle = { ...INITIAL_STATE };
+  constructor(props: IRightTriangle, state: IRightTriangle) {
     super(props);
   }
   public render() {

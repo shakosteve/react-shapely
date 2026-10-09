@@ -29,7 +29,7 @@ const INITIAL_STATE: IState = {
 
 class ShapeSelector extends React.Component<IProps, IState> {
   public readonly state: IState = { ...INITIAL_STATE };
-  constructor(props: IProps, state: IState) {
+  constructor(props: IProps) {
     super(props);
     this.handleOnChange = this.handleOnChange.bind(this);
     this.resetShapeSelection = this.resetShapeSelection.bind(this);
@@ -77,9 +77,10 @@ class ShapeSelector extends React.Component<IProps, IState> {
   }
 
   private isValidated = () => {
-    this.state.selectedShape !== "noShape"
-      ? this.setState({ validationMessage: "Validated" })
-      : this.setState({ validationMessage: "Not Validated" });
+    this.setState({
+      validationMessage:
+        this.state.selectedShape !== "noShape" ? "Validated" : "Not Validated"
+    });
   };
 
   private resetShapeSelection = () => {

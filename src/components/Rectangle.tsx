@@ -18,7 +18,7 @@ const INITIAL_STATE: IRectangle = {
 
 class Rectangle extends React.Component<IRectangle> {
   public state: IRectangle = { ...INITIAL_STATE };
-  constructor(props: IRectangle, state: IRectangle) {
+  constructor(props: IRectangle) {
     super(props);
   }
   public render() {

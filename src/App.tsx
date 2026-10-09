@@ -1,8 +1,7 @@
-import * as React from "react";
 import ShapeSelector from './components/ShapeSelector';
 import "./styles/App.css";
-import RetroWomanImage from "/src/images/retrowoman3.svg";
-import RetroManImage from "/src/images/telephone3.svg";
+import RetroWomanImage from "./images/retrowoman3.svg";
+import RetroManImage from "./images/telephone3.svg";
 
 
 function App() {

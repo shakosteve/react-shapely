@@ -1,114 +1,104 @@
-import * as React from "react";
+import { useState, type ChangeEvent, type SubmitEvent } from "react";
+import { shapes, type ShapeKey } from "../geometry";
 import "../styles/App.css";
-import Circle from "./Circle";
-import Rectangle from "./Rectangle";
-import RightTriangle from "./RightTriangle";
+import ShapeFields from "./ShapeFields";
 
-interface IProps {
-  selectedShape?: keyof (typeof shapes);
-  validationMessage?: string;
-}
-interface IState {
-  selectedShape?: keyof (typeof shapes);
-  isValid: boolean;
-  validationMessage?: string;
-}
+const NO_SHAPE_MESSAGE = "Choose a shape";
 
-const shapes = {
-  circle: <Circle />,
-  noShape: <div className="NoShape" />,
-  rectangle: <Rectangle />,
-  rightTriangle: <RightTriangle />
-};
+// Trim floating-point noise (e.g. 2.0000000000000004) without padding whole numbers.
+const format = (n: number) => String(Number(n.toFixed(4)));
 
-const INITIAL_STATE: IState = {
-  isValid: false,
-  selectedShape: "noShape",
-  validationMessage: "Choose a shape"
-};
+function ShapeSelector() {
+  const [selectedShape, setSelectedShape] = useState<ShapeKey | "">("");
+  const [values, setValues] = useState<Record<string, string>>({});
+  const [message, setMessage] = useState(NO_SHAPE_MESSAGE);
 
-class ShapeSelector extends React.Component<IProps, IState> {
-  public readonly state: IState = { ...INITIAL_STATE };
-  constructor(props: IProps) {
-    super(props);
-    this.handleOnChange = this.handleOnChange.bind(this);
-    this.resetShapeSelection = this.resetShapeSelection.bind(this);
-    this.isValidated = this.isValidated.bind(this);
-  }
-
-  public render() {
-    return (
-      <div className="ShapeSelector">
-        <form>
-          <select
-            id="shapeSelector"
-            defaultValue=""
-            className="custom-select custom-select-bg"
-            onChange={this.handleOnChange}
-          >
-            <option value="" disabled={true} hidden={true}>
-              Choose a shape
-            </option>
-            <option value="rectangle">Rectangle</option>
-            <option value="circle">Circle</option>
-            <option value="rightTriangle">Right Triangle</option>
-          </select>
-          {shapes[this.state.selectedShape || "noShape"]}
-          <input
-            type="button"
-            className="btn btn-dark"
-            value="Submit"
-            onClick={this.isValidated}
-          />{" "}
-          <input
-            type="reset"
-            className="btn btn-dark"
-            value="Clear"
-            onClick={this.resetShapeSelection}
-          />
-          <div className="ShapeValidation">
-            <label id="ShapeValidationMessage">
-              {this.state.validationMessage}
-            </label>
-          </div>
-        </form>
-      </div>
-    );
-  }
-
-  private isValidated = () => {
-    this.setState({
-      validationMessage:
-        this.state.selectedShape !== "noShape" ? "Validated" : "Not Validated"
-    });
+  const handleShapeChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const shape = e.target.value as ShapeKey;
+    setSelectedShape(shape);
+    setValues({});
+    setMessage(shapes[shape].hint);
   };
 
-  private resetShapeSelection = () => {
-    this.setState(INITIAL_STATE);
+  const handleValueChange = (name: string, value: string) => {
+    setValues(previous => ({ ...previous, [name]: value }));
   };
 
-  private handleOnChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    switch (e.target.value) {
-      case "rectangle": {
-        this.setState({
-          selectedShape: "rectangle"
-        });
-        break;
-      }
-      case "circle": {
-        this.setState({
-          selectedShape: "circle"
-        });
-        break;
-      }
-      case "rightTriangle": {
-        this.setState({
-          selectedShape: "rightTriangle"
-        });
-        break;
-      }
+  const handleSubmit = (e: SubmitEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (selectedShape === "") {
+      setMessage(NO_SHAPE_MESSAGE);
+      return;
     }
+
+    const entered: Record<string, number> = {};
+    for (const [name, text] of Object.entries(values)) {
+      if (text.trim() === "") {
+        continue;
+      }
+      const number = Number(text);
+      if (!Number.isFinite(number) || number <= 0) {
+        setMessage("Measurements must be positive numbers");
+        return;
+      }
+      entered[name] = number;
+    }
+
+    const result = shapes[selectedShape].solve(entered);
+    if (!result.ok) {
+      setMessage(result.message);
+      return;
+    }
+    setValues(
+      Object.fromEntries(Object.entries(result.values).map(([name, n]) => [name, format(n)]))
+    );
+    setMessage("Solved!");
   };
+
+  const handleClear = () => {
+    setSelectedShape("");
+    setValues({});
+    setMessage(NO_SHAPE_MESSAGE);
+  };
+
+  return (
+    <div className="ShapeSelector">
+      <form noValidate={true} onSubmit={handleSubmit}>
+        <select
+          id="shapeSelector"
+          aria-label="Shape"
+          value={selectedShape}
+          className="custom-select custom-select-bg"
+          onChange={handleShapeChange}
+        >
+          <option value="" disabled={true} hidden={true}>
+            Choose a shape
+          </option>
+          {Object.entries(shapes).map(([key, shape]) => (
+            <option key={key} value={key}>
+              {shape.label}
+            </option>
+          ))}
+        </select>
+        {selectedShape === "" ? (
+          <div className="NoShape" />
+        ) : (
+          <ShapeFields
+            fields={shapes[selectedShape].fields}
+            values={values}
+            onChange={handleValueChange}
+          />
+        )}
+        <input type="submit" className="btn btn-dark" value="Submit" />{" "}
+        <input type="button" className="btn btn-dark" value="Clear" onClick={handleClear} />
+        <div className="ShapeValidation">
+          <label id="ShapeValidationMessage" role="status">
+            {message}
+          </label>
+        </div>
+      </form>
+    </div>
+  );
 }
 
 export default ShapeSelector;

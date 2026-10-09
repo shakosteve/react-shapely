@@ -17,7 +17,7 @@ const INITIAL_STATE: ICircle = {
 
 class Circle extends React.Component<ICircle> {
   public readonly state: ICircle = { ...INITIAL_STATE };
-  constructor(props: ICircle, state: ICircle) {
+  constructor(props: ICircle) {
     super(props);
     this.handleOnChange = this.handleOnChange.bind(this);
   }

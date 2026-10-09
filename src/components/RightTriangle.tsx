@@ -16,7 +16,7 @@ const INITIAL_STATE: IRightTriangle = {
 };
 class RightTriangle extends React.Component<IRightTriangle> {
   public readonly state: IRightTriangle = { ...INITIAL_STATE };
-  constructor(props: IRightTriangle, state: IRightTriangle) {
+  constructor(props: IRightTriangle) {
     super(props);
   }
   public render() {

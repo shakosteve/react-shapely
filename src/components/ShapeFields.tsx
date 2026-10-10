@@ -19,6 +19,7 @@ function ShapeFields({ fields, values, onChange }: Props) {
             <input
               id={`shape-field-${field.name}`}
               type="number"
+              inputMode="decimal"
               min="0"
               step="any"
               name={field.name}

@@ -21,7 +21,8 @@ afterEach(() => {
 });
 
 const field = (label: string) =>
-  container.querySelector<HTMLInputElement>(`[aria-label="${label}"]`)!;
+  ([...container.querySelectorAll("label")].find(l => l.textContent === label)?.control ??
+    null) as HTMLInputElement;
 const message = () => container.querySelector('[role="status"]')!.textContent;
 
 // React tracks input values itself, so set them through the native setter to trigger onChange.
@@ -47,8 +48,8 @@ it("fills in a circle's other measurements from its radius", () => {
   click("Submit");
 
   expect(field("Diameter").value).toBe("4");
-  expect(field("Circumference").value).toBe("12.5664");
-  expect(field("Area").value).toBe("12.5664");
+  expect(field("Circumference").value).toBe("12.57");
+  expect(field("Area").value).toBe("12.57");
   expect(message()).toBe("Solved!");
 });
 
@@ -86,4 +87,27 @@ it("clears the shape, its measurements and the message", () => {
 
   change(shapeSelect(), "rectangle");
   expect(field("Length").value).toBe("");
+});
+
+it("shows two decimal places, except for whole numbers", () => {
+  change(shapeSelect(), "rectangle");
+  change(field("Length"), "2.5");
+  change(field("Width"), "3");
+
+  click("Submit");
+
+  expect(field("Length").value).toBe("2.50");
+  expect(field("Width").value).toBe("3");
+  expect(field("Perimeter").value).toBe("11");
+  expect(field("Area").value).toBe("7.50");
+});
+
+it("drops the decimals when a value rounds to a whole number", () => {
+  change(shapeSelect(), "circle");
+  change(field("Diameter"), "7.999");
+
+  click("Submit");
+
+  expect(field("Diameter").value).toBe("8");
+  expect(field("Radius").value).toBe("4");
 });

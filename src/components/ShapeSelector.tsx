@@ -5,11 +5,22 @@ import ShapeFields from "./ShapeFields";
 
 const NO_SHAPE_MESSAGE = "Choose a shape";
 
-// Trim floating-point noise (e.g. 2.0000000000000004) without padding whole numbers.
-const format = (n: number) => String(Number(n.toFixed(4)));
+// Show two decimal places, except for whole numbers (including ones that round to whole).
+const format = (n: number) => {
+  const rounded = Number(n.toFixed(2));
+  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2);
+};
 
-function ShapeSelector() {
-  const [selectedShape, setSelectedShape] = useState<ShapeKey | "">("");
+interface Props {
+  onShapeChange?: (shape: ShapeKey | "") => void;
+}
+
+function ShapeSelector({ onShapeChange }: Props) {
+  const [selectedShape, setSelectedShapeState] = useState<ShapeKey | "">("");
+  const setSelectedShape = (shape: ShapeKey | "") => {
+    setSelectedShapeState(shape);
+    onShapeChange?.(shape);
+  };
   const [values, setValues] = useState<Record<string, string>>({});
   const [message, setMessage] = useState(NO_SHAPE_MESSAGE);
 

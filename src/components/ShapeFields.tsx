@@ -12,17 +12,21 @@ function ShapeFields({ fields, values, onChange }: Props) {
     <div className="ParameterDiv">
       {fields.map(field => (
         <div key={field.name}>
-          <input
-            type="number"
-            min="0"
-            step="any"
-            name={field.name}
-            aria-label={field.label}
-            className="form-control"
-            placeholder={field.label}
-            value={values[field.name] ?? ""}
-            onChange={e => onChange(field.name, e.target.value)}
-          />
+          <div className="ShapeField">
+            <label htmlFor={`shape-field-${field.name}`} className="ShapeFieldLabel">
+              {field.label}
+            </label>
+            <input
+              id={`shape-field-${field.name}`}
+              type="number"
+              min="0"
+              step="any"
+              name={field.name}
+              className="form-control"
+              value={values[field.name] ?? ""}
+              onChange={e => onChange(field.name, e.target.value)}
+            />
+          </div>
           <br />
         </div>
       ))}

@@ -1,5 +1,10 @@
 body {
-  margin-top: 25px;
+  margin: 0;
+  padding-top: 25px;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: antiquewhite
 }
 
@@ -8,4 +13,13 @@ body {
   font-family: 'Tangerine';
   font-size: 75px;
   text-align: center;
+}
+
+/* Center the app in the space below the title so it lands about halfway down the screen */
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 25px;
 }

@@ -11,7 +11,9 @@
 }
 .RetroManImage {
   height: 225px;
-  vertical-align: bottom;
+  /* Block so the quote always starts on its own line underneath */
+  display: block;
+  margin: 0 auto;
 }
 
 .RetroWoman {
@@ -98,4 +100,84 @@
   font-family: "Calibri";
   width: 300px;
   height: 222px;
+}
+
+/* Tablets and narrow windows: tighten the gap around the form so all three columns fit */
+@media (max-width: 1060px) {
+  .ShapeSelector {
+    margin-right: 24px;
+    margin-left: 24px;
+  }
+}
+
+/* Phones: characters side by side above a full-width form */
+@media (max-width: 760px) {
+  .AppComponentStyle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0 16px;
+  }
+
+  .RetroMan,
+  .RetroWoman {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 26px;
+    line-height: 1.15;
+  }
+  .RetroWoman {
+    /* Image first, matching the man, even though its text comes first in the markup */
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+  }
+  .RetroManImage,
+  .RetroWomanImage {
+    height: 120px;
+  }
+
+  .ShapeSelector {
+    order: 1;
+    width: 100%;
+    margin: 16px 0 0;
+  }
+
+  .custom-select,
+  .form-control,
+  .ShapeField,
+  .ParameterDiv,
+  .NoShape {
+    width: 100%;
+    max-width: 300px;
+  }
+  .ParameterDiv,
+  .NoShape {
+    margin: 12px auto 10px;
+  }
+  /* Let the fields set their own height (they're taller at 16px), and don't reserve
+     empty space before a shape is chosen */
+  .ParameterDiv {
+    height: auto;
+  }
+  .NoShape {
+    height: 0;
+  }
+
+  /* 16px or larger stops iOS from zooming in when a field gets focus */
+  .custom-select,
+  .form-control,
+  .ShapeFieldLabel {
+    font-size: 16px;
+  }
+
+  .btn {
+    width: calc(50% - 4px);
+    max-width: 150px;
+  }
+
+  .ShapeValidation {
+    font-size: 32px;
+  }
 }

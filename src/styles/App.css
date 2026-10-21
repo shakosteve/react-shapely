@@ -102,6 +102,78 @@
   height: 222px;
 }
 
+/* Space for the drawing of the solved shape; matches the drawing's 360 × 220 viewBox */
+.ShapeStage {
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 360 / 220;
+  margin: 0 auto 8px;
+}
+
+.ShapeDrawing {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* "Invisible pencil": each path is revealed from start to end (paths use pathLength="1") */
+.DrawStroke,
+.DrawDetail {
+  fill: none;
+  stroke: #343a40;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  animation: pencil 1.6s ease-in-out forwards;
+}
+
+/* Radius line and right-angle mark follow once the outline is done */
+.DrawDetail {
+  stroke-width: 1.5;
+  animation-duration: 0.5s;
+  animation-delay: 1.6s;
+}
+
+.ShapeLabel {
+  font-family: "Calibri", sans-serif;
+  font-size: 13px;
+  fill: #343a40;
+}
+
+/* Measurements fade in after the drawing finishes */
+.ShapeLabel,
+.DrawLabel {
+  fill: #343a40;
+  opacity: 0;
+  animation: fade-in 0.6s ease-out 1.9s forwards;
+}
+
+@keyframes pencil {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .DrawStroke,
+  .DrawDetail,
+  .ShapeLabel,
+  .DrawLabel {
+    animation: none;
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
 /* Tablets and narrow windows: tighten the gap around the form so all three columns fit */
 @media (max-width: 1060px) {
   .ShapeSelector {

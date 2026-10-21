@@ -46,3 +46,60 @@ it("changes the retro man's and woman's lines to match the chosen shape", () => 
 
   act(() => root.unmount());
 });
+
+it('draws the solved shape, and removes the drawing when it no longer applies', () => {
+  const div = document.createElement('div');
+  // Forms only submit when they're in the document
+  document.body.appendChild(div);
+  const root = createRoot(div);
+  act(() => root.render(<App />));
+  const drawing = () => div.querySelector('svg.ShapeDrawing');
+  const select = div.querySelector('select')!;
+  const choose = (shape: string) => {
+    select.value = shape;
+    act(() => select.dispatchEvent(new Event('change', { bubbles: true })));
+  };
+  const type = (name: string, value: string) => {
+    const input = div.querySelector<HTMLInputElement>(`input[name="${name}"]`)!;
+    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value')!.set!.call(input, value);
+    act(() => input.dispatchEvent(new Event('input', { bubbles: true })));
+  };
+  const click = (value: string) =>
+    act(() => div.querySelector<HTMLInputElement>(`input[value="${value}"]`)!.click());
+
+  expect(drawing()).toBeNull();
+
+  choose('rectangle');
+  type('length', '4');
+  type('width', '3');
+  click('Submit');
+  expect(drawing()!.getAttribute('aria-label')).toBe(
+    'Rectangle: Length 4, Width 3, Perimeter 14, Area 12'
+  );
+  const labels = [...drawing()!.querySelectorAll('text')].map(t => t.textContent);
+  expect(labels).toEqual(['Length 4', 'Width 3', 'Area 12', 'Perimeter 14']);
+
+  type('width', '-1');
+  click('Submit');
+  expect(drawing()).toBeNull();
+
+  choose('rightTriangle');
+  type('legA', '3');
+  type('legB', '4');
+  click('Submit');
+  expect(drawing()!.getAttribute('aria-label')).toBe(
+    'Right Triangle: Leg A 3, Leg B 4, Hypotenuse 5, Perimeter 12'
+  );
+
+  choose('circle');
+  expect(drawing()).toBeNull();
+
+  type('radius', '2');
+  click('Submit');
+  expect(drawing()).not.toBeNull();
+  click('Clear');
+  expect(drawing()).toBeNull();
+
+  act(() => root.unmount());
+  div.remove();
+});

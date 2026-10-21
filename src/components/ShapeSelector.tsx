@@ -1,21 +1,18 @@
 import { useState, type ChangeEvent, type SubmitEvent } from "react";
+import { format } from "../format";
 import { shapes, type ShapeKey } from "../geometry";
 import "../styles/App.css";
 import ShapeFields from "./ShapeFields";
 
 const NO_SHAPE_MESSAGE = "Choose a shape";
 
-// Show two decimal places, except for whole numbers (including ones that round to whole).
-const format = (n: number) => {
-  const rounded = Number(n.toFixed(2));
-  return Number.isInteger(rounded) ? String(rounded) : rounded.toFixed(2);
-};
-
 interface Props {
   onShapeChange?: (shape: ShapeKey | "") => void;
+  /** Called with the full set of measurements after a successful Submit, or null when it fails. */
+  onSolve?: (values: Record<string, number> | null) => void;
 }
 
-function ShapeSelector({ onShapeChange }: Props) {
+function ShapeSelector({ onShapeChange, onSolve }: Props) {
   const [selectedShape, setSelectedShapeState] = useState<ShapeKey | "">("");
   const setSelectedShape = (shape: ShapeKey | "") => {
     setSelectedShapeState(shape);
@@ -50,6 +47,7 @@ function ShapeSelector({ onShapeChange }: Props) {
       const number = Number(text);
       if (!Number.isFinite(number) || number <= 0) {
         setMessage("Measurements must be positive numbers");
+        onSolve?.(null);
         return;
       }
       entered[name] = number;
@@ -58,12 +56,14 @@ function ShapeSelector({ onShapeChange }: Props) {
     const result = shapes[selectedShape].solve(entered);
     if (!result.ok) {
       setMessage(result.message);
+      onSolve?.(null);
       return;
     }
     setValues(
       Object.fromEntries(Object.entries(result.values).map(([name, n]) => [name, format(n)]))
     );
     setMessage("Solved!");
+    onSolve?.(result.values);
   };
 
   const handleClear = () => {
